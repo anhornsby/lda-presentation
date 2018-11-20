@@ -21,14 +21,6 @@ var RevealNotes = (function() {
 
 		var notesPopup = window.open( notesFilePath, 'reveal.js - Notes', 'width=1100,height=700' );
 
-		if( !notesPopup ) {
-			alert( 'Speaker view popup failed to open. Please make sure popups are allowed and reopen the speaker view.' );
-			return;
-		}
-
-		// Allow popup window access to Reveal API
-		notesPopup.Reveal = window.Reveal;
-
 		/**
 		 * Connect to the notes window through a postmessage handshake.
 		 * Using postmessage enables us to work in situations where the
@@ -58,11 +50,10 @@ var RevealNotes = (function() {
 		/**
 		 * Posts the current slide data to the notes window
 		 */
-		function post( event ) {
+		function post() {
 
 			var slideElement = Reveal.getCurrentSlide(),
-				notesElement = slideElement.querySelector( 'aside.notes' ),
-				fragmentElement = slideElement.querySelector( '.current-fragment' );
+				notesElement = slideElement.querySelector( 'aside.notes' );
 
 			var messageData = {
 				namespace: 'reveal-notes',
@@ -77,21 +68,6 @@ var RevealNotes = (function() {
 			if( slideElement.hasAttribute( 'data-notes' ) ) {
 				messageData.notes = slideElement.getAttribute( 'data-notes' );
 				messageData.whitespace = 'pre-wrap';
-			}
-
-			// Look for notes defined in a fragment
-			if( fragmentElement ) {
-				var fragmentNotes = fragmentElement.querySelector( 'aside.notes' );
-				if( fragmentNotes ) {
-					notesElement = fragmentNotes;
-				}
-				else if( fragmentElement.hasAttribute( 'data-notes' ) ) {
-					messageData.notes = fragmentElement.getAttribute( 'data-notes' );
-					messageData.whitespace = 'pre-wrap';
-
-					// In case there are slide notes
-					notesElement = null;
-				}
 			}
 
 			// Look for notes defined in an aside element
@@ -136,9 +112,22 @@ var RevealNotes = (function() {
 		}
 
 		// Open the notes when the 's' key is hit
-		Reveal.addKeyBinding({keyCode: 83, key: 'S', description: 'Speaker notes view'}, function() {
-			openNotes();
-		} );
+		document.addEventListener( 'keydown', function( event ) {
+			// Disregard the event if the target is editable or a
+			// modifier is present
+			if ( document.querySelector( ':focus' ) !== null || event.shiftKey || event.altKey || event.ctrlKey || event.metaKey ) return;
+
+			// Disregard the event if keyboard is disabled
+			if ( Reveal.getConfig().keyboard === false ) return;
+
+			if( event.keyCode === 83 ) {
+				event.preventDefault();
+				openNotes();
+			}
+		}, false );
+
+		// Show our keyboard shortcut in the reveal.js help overlay
+		if( window.Reveal ) Reveal.registerKeyboardShortcut( 'S', 'Speaker notes view' );
 
 	}
 
