@@ -64,7 +64,17 @@
 				<section data-background="#4ecdc4">
 					<h3>Conceptual Organization in the Supermarket</h3>
 					<p>
-						<small>@adamnhornsby</small>
+						<small><b>Adam Hornsby (@adamnhornsby)</b>, 
+						Thomas Evans, Peter Riefer, Rosie Prior & Brad Love
+						<br><br>
+						<a href="https://arxiv.org/abs/1810.08577">https://arxiv.org/abs/1810.08577</a>
+						</small>
+					</p>
+				</section>
+
+				<section data-background="#dbb1d9">
+					<h2>Introduction</h2>
+					<p>
 					</p>
 				</section>
 
@@ -75,7 +85,7 @@
 						<small>
 						<span class="fragment">It's a <b>fruit</b>, it's <b>red</b>, it's <b>fleshy</b> and <b>juicy</b>...</span><br>
 						<!-- <br> -->
-						<span class="fragment">but is this <b>how consumers think?</b></span><br><br>
+						<span class="fragment">...but is this <b>how consumers think?</b></span><br><br>
 						<span class="fragment">The answer helps us to <b>optimize in-store and online search</b> for customers</span><br>
 					</small>
 				</section>
@@ -92,34 +102,43 @@
 				</section>
 
 				<section>
-					<h4>NLP researchers know about associations</h4>
+					<h4>NLP researchers know about interactions</h4>
 					<!-- TODO: change this to be more about topic models, with hints of associations -->
 					<img data-src="./images/lda.jpg" width=500 style= "border-style: none; box-shadow: none"><br>
 					<small>
-					<span class="fragment"><i>"You shall know a word <b>by the company it keeps</b>"</i> (Firth, 1957)</span><br>
+					<span class="fragment"><i>"You shall know a word <b>by the company it keeps</b>"</i> (Firth, 1957) <br>(i.e. Distributional Hypothesis)</span><br>
 					<br>
 					<span class="fragment"><b>Topic models (e.g. LDA)</b> use this premise to learn high-level categories from language data</span><br>
-					<span class="fragment">So maybe these algorithms can help us to <b>understand how consumers think about products</b></span><br>
+					<span class="fragment">So maybe these algorithms can help us to <b>understand how consumers think about products?</b></span><br>
 				</small>
 
 				</section>
 
 				<section>
 					<h4>Imagine a basket instead of a sentence</h4>
-					<img data-src="./images/sentence-vs-basket.png" width=400 style= "border-style: none; box-shadow: none"><br>
+					<img data-src="./images/sentence-vs-basket.png" width=350 style= "border-style: none; box-shadow: none"><br>
 
 					<small>
 					<span class="fragment">It is straightforward to <b>use existing NLP algorithms</b> on basket data</span><br>
-					<span class="fragment">Basket data requires <b>less preprocessing</b> and is <b>unordered</b>, which suits many NLP algorithms better</span><br>
+					<span class="fragment">Basket data requires <b>less preprocessing</b> and is <b>unordered</b>, which suits many NLP algorithms better</span><br><br>
+
+					<span class="fragment">Will a <b>topic model</b> recover meaningful <b>categories</b> from basket data <br>directly?</span>
 					
 				</small>
 				</section>
 
+				<section data-background="#ffe66d">
+					<h2>Results</h2>
+					<p>
+					</p>
+				</section>
+
 				<section>
-					<h4>We built a topic model using basket data</h4>
+					<h4>Our topic model discovered semantic groups</h4>
 					<img data-src="./images/basket-generation.png" width=500 style= "border-style: none; box-shadow: none"><br>
 					<small>
-					<span class="fragment">The topics appeared coherent and grouped around <b>specifc</b> (e.g. <i>Stir fry</i>) <b>and general</b> (e.g. <i>Cooking from scratch</i>) <b>themes</b></span><br><br>
+					<span class="fragment">We tuned an LDA model (through Spark 1.6) on <b>1.2m real supermarket transactions</b></span><br>
+					<span class="fragment">The final <b>25 topics</b> appeared coherent and grouped around <b>specifc</b> (e.g. <i>Stir fry</i>) <b>and general</b> (e.g. <i>Cooking from scratch</i>), <b> goal-directed themes</b></span><br><br>
 					<span class="fragment">So <b>did they make sense to consumers</b>?</span><br>
 				</small>
 				</section>
@@ -127,13 +146,13 @@
 				<section>
 
 					<h4>Consumers agreed with LDA's topics</h4>
-					<img data-src="./images/intruder_accuracy.png" width=400 style= "border-style: none; box-shadow: none"><br>
+					<img data-src="./images/intruder_accuracy.png" width=500 style= "border-style: none; box-shadow: none"><br>
 
 					<small>
 						<span class="fragment">An experiment with <b>1000 real consumers</b> showed that they <b>could identify "intruder" products</b> accurately<br></span>
 
 						<span class="fragment">Suggests that most topics were <b>similar to mental categories</b> held by consumers</span><br>
-						<span class="fragment">Some were difficult (e.g. <i>Afternoon tea</i>), perhaps due to <b>individual differences</b></span><br>
+						<span class="fragment">Some were difficult (e.g. <i>Afternoon tea</i>), perhaps<br> due to <b>individual differences</b></span><br>
 					</small>
 
 				</section>
@@ -144,20 +163,31 @@
 					<img data-src="./images/demographics.png" width=400 style= "border-style: none; box-shadow: none"><br>
 					<small>
 					<span class="fragment">The topics customers purchased <b>predicted their self-reported age, location and gender</b></span><br>
-					<span class="fragment">Suggests that people's <b>mental categories for products may differ</b> between individuals and groups</span><br>
+					<span class="fragment">Suggests that people's <b>mental representations of products may differ</b> between individuals and groups</span><br><br>
+					<span class="fragment">This can help us to <b>personalise search</b> algorithms</span><br>
 
 					</small>
 
 				</section>
 
+				<section data-background="#312f2f">
+					<h3>Conclusions</h3>
+					<p>
+					</p>
+				</section> 
+
 				<section>
 
-					<!-- <h4>Conclusions</h4> -->
-					<img data-src="./images/basket-generation.png" width=400 style= "border-style: none; box-shadow: none"><br>
+					<h4>Conclusions</h4>
+					<img data-src="./images/tomato.jpg" width=300 style= "border-style: none; box-shadow: none"><br>
 					<small>
-					<span class="fragment">Consumers reason about products in terms of their <b>roles with other products</b></span><br>
-					<span class="fragment">Topic models can help us <b>uncover the mental categories</b> that consumers use</span><br>
+					<span class="fragment">Consumers think about products in terms of their <b>roles with other products</b> <br>(e.g. "goes well in a salad")</span><br>
 					<span class="fragment">Differences in <b>experience may lead to different mental categories</b></span><br>
+					<span class="fragment">Topic models apply to <b>other data sources</b> (e.g. baskets)</span><br>
+					<br>
+
+					<span class="fragment">We are using this insight to <b>optimize customer's routes through the store</b> (both online and offline) (e.g. dual siting)</span><br>
+					<span class="fragment">An <b>alternative source of data</b> for evaluating NLP models<br> (data & code available soon)</span><br>
 
 				</small>
 
